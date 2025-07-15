@@ -4,7 +4,7 @@ library(plyr)
 library(lmerTest)
 
 # we need to tell R where to find everything by setting a working directory!
-setwd("I:/data_MS2_spalek/Hanxin")
+setwd("./logfiles")
 
 # # have a first look at the data
 # VP01 <- read_table("List1-he-log.txt") # read_table command for loading text files
@@ -65,19 +65,12 @@ VP17 <- read_table("VP17.txt") # read_table command for loading text files
 alldata <- rbind(VP01, VP02, VP03, VP04, VP05, VP06, VP07, VP08, VP14, VP15, VP16, VP17) # VP05 has strange column name
 nrow(alldata)
 
-head(VP05)
-head(VP06)
-head(VP07)
-
-alldata <- rbind(VP04, VP06, VP07)
-View(alldata)
-
 # 4. Filter out all errors and voice key misses 
-cleandata <- filter(alldata,
-                    Error == 0)
-View(cleandata)
-cleandata <- filter(cleandata,
-                    Voicekey != -1) # != means 'does not equal'
+  cleandata <- filter(alldata,
+                      Error == 0)
+  View(cleandata)
+  cleandata <- filter(cleandata,
+                      Voicekey != -1) # != means 'does not equal'
 
 # 5. Filter for control and critical
 cleandata$category <- as.factor(cleandata$category)
